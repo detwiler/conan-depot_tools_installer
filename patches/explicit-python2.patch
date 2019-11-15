@@ -1,0 +1,83 @@
+diff --git a/download_from_google_storage b/download_from_google_storage
+index 74e1e83f..a5453eb1 100755
+--- a/download_from_google_storage
++++ b/download_from_google_storage
+@@ -5,4 +5,4 @@
+ 
+ base_dir=$(dirname "$0")
+ 
+-PYTHONDONTWRITEBYTECODE=1 exec python "$base_dir/download_from_google_storage.py" "$@"
++PYTHONDONTWRITEBYTECODE=1 exec python2 "$base_dir/download_from_google_storage.py" "$@"
+diff --git a/download_from_google_storage.py b/download_from_google_storage.py
+index 3dcc8624..90e1b1fa 100755
+--- a/download_from_google_storage.py
++++ b/download_from_google_storage.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+diff --git a/gclient b/gclient
+index 4ff6b3cb..feaf36e3 100755
+--- a/gclient
++++ b/gclient
+@@ -19,4 +19,4 @@ if [[ "#grep#fetch#cleanup#diff#setdep#" != *"#$1#"* ]]; then
+   esac
+ fi
+ 
+-PYTHONDONTWRITEBYTECODE=1 exec python "$base_dir/gclient.py" "$@"
++PYTHONDONTWRITEBYTECODE=1 exec python2 "$base_dir/gclient.py" "$@"
+diff --git a/gclient.py b/gclient.py
+index ab2ccd5e..674fa75e 100755
+--- a/gclient.py
++++ b/gclient.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+diff --git a/gn b/gn
+index 93c16e1d..fad0e439 100755
+--- a/gn
++++ b/gn
+@@ -5,4 +5,4 @@
+ 
+ base_dir=$(dirname "$0")
+ 
+-PYTHONDONTWRITEBYTECODE=1 exec python "$base_dir/gn.py" "$@"
++PYTHONDONTWRITEBYTECODE=1 exec python2 "$base_dir/gn.py" "$@"
+diff --git a/gn.py b/gn.py
+index 43b18dd0..d32f8b3f 100755
+--- a/gn.py
++++ b/gn.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # Copyright 2013 The Chromium Authors. All rights reserved.
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+diff --git a/gsutil.py b/gsutil.py
+index 64e4b5cb..22a613fc 100755
+--- a/gsutil.py
++++ b/gsutil.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # Copyright 2014 The Chromium Authors. All rights reserved.
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+diff --git a/vpython b/vpython
+index eee9537a..7f9132d5 100755
+--- a/vpython
++++ b/vpython
+@@ -30,7 +30,7 @@ then
+         ;;
+     esac
+   done
+-  exec "python" "${NEWARGS[@]}"
++  exec "python2" "${NEWARGS[@]}"
+ fi
+ 
+ 

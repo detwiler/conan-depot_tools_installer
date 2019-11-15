@@ -18,6 +18,7 @@ class DepotToolsConan(ConanFile):
     author = "Bincrafters <bincrafters@gmail.com>"
     no_copy_source = True
     short_paths = True
+    exports = [ "patches/*" ]
 
     @property
     def _source_subfolder(self):
@@ -45,11 +46,17 @@ class DepotToolsConan(ConanFile):
                 shutil.copy(os.path.join(root, dest), symlink, follow_symlinks=False)
                 self.output.info("Replaced symlink '%s' with its destination file '%s'" % (symlink, dest))
 
+    @property
+    def _explicit_python2_required(self):
+        return os_info.is_linux and os_info.linux_distro == "fedora" and os_info.os_version > "30"
+
     def source(self):
         commit = "cc6f585f055ae696170b22f0e8db906d27afe636"
         tools.mkdir(self._source_subfolder)
         with tools.chdir(self._source_subfolder):
             tools.get("{}/+archive/{}.tar.gz".format(self.homepage, commit))
+        if self._explicit_python2_required:
+            tools.patch(base_path=self._source_subfolder, patch_file="patches/explicit-python2.patch")
         self._dereference_symlinks()
 
     def package(self):
@@ -91,3 +98,5 @@ class DepotToolsConan(ConanFile):
         self.env_info.PATH.append(self.package_folder)
         # Don't update gclient automatically when running it
         self.env_info.DEPOT_TOOLS_UPDATE = "0"
+        if self._explicit_python2_required:
+            self.env_info.VPYTHON_BYPASS = "manually managed python not supported by chrome operations"
